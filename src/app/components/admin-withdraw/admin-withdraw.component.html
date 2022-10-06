@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card mt-5">
+          <div class="header-card p-md-4 p-3">
+              <h4 class="text-yellow mb-0 text-center">{{ 'withdraw.withdraw_history' | translate }}</h4>
+          </div>
+          <div class="p-3 bg-white">
+              <div *ngIf="withdrawList?.length">
+                  <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">Status</th>
+                          <th scope="col">Name</th>
+                          <th scope="col">{{ 'withdraw.amount' | translate }}</th>
+                          <th scope="col">{{ 'withdraw.address' | translate }}</th>
+                          <th scope="col">Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let withdraw of withdrawList">
+                          <th scope="row">
+                            <span *ngIf="withdraw.status == 'PENDING'">{{ 'withdraw.pending' | translate }}</span>
+                            <span *ngIf="withdraw.status == 'COMPLETED'">{{ 'withdraw.complete' | translate }}</span>
+                            <span *ngIf="withdraw.status == 'REJECTED'">{{ 'withdraw.rejected' | translate }}</span>
+
+                          </th>
+                          <td>{{withdraw?.user?.firstName}} {{withdraw?.user?.lastName}}</td>
+                          <td>{{withdraw?.amount}}</td>
+                          <td [title]="withdraw.address">{{withdraw?.address}}</td>
+                          <td *ngIf="withdraw.status == 'PENDING'">
+                            <i class="fas fa-check green mr-10 pointer" (click)="updateStatus('accept', withdraw)"></i>
+                            <i class="fas fa-times red pointer" (click)="updateStatus('reject', withdraw)"></i>
+                          </td>
+                        </tr>
+                        
+                      </tbody>
+                    </table>
+                    <!-- <pagination-controls (pageChange)="getWithdraw($event)"></pagination-controls> -->
+              </div>
+              <h4 class="text-muted text-center py-5" *ngIf="!withdrawList || !withdrawList.length">{{'withdrawal.no_history' | translate}}</h4>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

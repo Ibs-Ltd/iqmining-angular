@@ -1,0 +1,649 @@
+<div class="row mt-5">
+    <div class="col-md-12">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="oneyear-tab" data-bs-toggle="tab" data-bs-target="#oneyear"
+                    type="button" role="tab" aria-controls="oneyear" aria-selected="true"
+                    (click)="contractYear='One';getContract(contractYear)">1 Year
+                    <span class="d-lg-inline-block d-md-none d-sm-none d-none">{{'home.contract' | translate}}</span></button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="twoyear-tab" data-bs-toggle="tab" data-bs-target="#twoyear" type="button"
+                    role="tab" aria-controls="twoyear" aria-selected="false"
+                    (click)="contractYear='Two';getContract(contractYear)">2 Years
+                    <span class="d-lg-inline-block d-md-none d-sm-none d-none">{{'home.contract' | translate}}</span></button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="fiveyear-tab" data-bs-toggle="tab" data-bs-target="#fiveyear" type="button"
+                    role="tab" aria-controls="fiveyear" aria-selected="false"
+                    (click)="contractYear='Five';getContract(contractYear)">5 Years
+                    <span class="d-lg-inline-block d-md-none d-sm-none d-none">{{'home.contract' | translate}}</span></button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="lifetimeyear-tab" data-bs-toggle="tab" data-bs-target="#lifetime"
+                    type="button" role="tab" aria-controls="lifetime" aria-selected="false"
+                    (click)="contractYear='Lifetime';getContract(contractYear)">{{'home.lifetime' | translate}}</button>
+            </li>
+        </ul>
+        <div class="tab-content box-tab-cont p-3" id="myTabContent">
+            <div class="tab-pane fade show active" id="oneyear" role="tabpanel" aria-labelledby="oneyear-tab">
+                <div class="tab-cont" id="tab_1">
+                    <div class="calc-table calc-table-1">
+                        <div class="calc-column calc-column_1" style="" aria-hidden="true" tabindex="0" role="tabpanel"
+                            id="slick-slide60" aria-describedby="slick-slide-control60">
+                            <div class="calc-row calc-row_modmh70">
+                                <div class="calc-td calc-td_title"></div>
+                            </div>
+                            <div class="calc-row" style="height: 220px;">
+                                <!-- <div class="calc-td calc-td_title"></div> -->
+                            </div>
+                            <div class="calc-row">
+                                <div class="calc-td calc-td_title">{{'home.mining_strategy' | translate}}</div>
+                            </div>
+                            <div class="calc-row">
+                                <div class="calc-td calc-td_title">{{'home.min_hashrate' | translate}}</div>
+                            </div>
+                            <div class="calc-row">
+                                <div class="calc-td calc-td_title">{{'home.maintenance_fee' | translate}}</div>
+                            </div>
+                            <div class="calc-row">
+                                <div class="calc-td calc-td_title">{{'home.payouts' | translate}}</div>
+                            </div>
+                            <div class="calc-row">
+                                <div class="calc-td calc-td_title">{{'home.availability' | translate}}</div>
+                            </div>
+                            <div class="calc-row calc-row_modmh120">
+                                <div class="calc-td calc-td_title">{{'home.contract_price' | translate}}</div>
+                            </div>
+                            <div class="calc-row calc-row_modmh">
+                                <div class="calc-td calc-td_title">{{'home.potential_income' | translate}}
+                                </div>
+                            </div>
+                            <div class="calc-row calc-row_modmh140">
+                                <div class="calc-td calc-td_title"></div>
+                            </div>
+                        </div>
+                        <div *ngFor="let package of packages.oneYear; let i=index" class="calc-column" style="" aria-hidden="true"
+                            tabindex="-1" role="tabpanel" id="slick-slide61" aria-describedby="slick-slide-control61">
+                            <div class="calc-row calc-row_modmh70 border-right-left {{package.className}}" >
+                                <div class="calc-td calc-td_head">Package {{i+1}}</div>
+
+                                <div class="calc-td calc-td_head">{{package.name}}</div>
+                            </div>
+                            <div class="calc-row">
+                                
+                                <div class="calc-td calc-td_hide p-0-10 input-div">
+                                    <input class="form-control text-center input-field" [name]="package.name + i" placeholder="Enter amount" [(ngModel)]="package.investmentAmount" (ngModelChange)="showInvestmentReturns(package)" />
+                                    
+                                        <a href="javascript:void(0)" class="btn auto-buylink input-go-btn" (click)="buyNow(package); navigateToHash()"
+                                            tabindex="-1">GO</a>
+                                    
+                                </div>
+                                <div class="calc-td-inner">
+                                    <div class="calc-td">{{'home.daily' | translate}}: {{package.returns.daily}}</div>
+                                    <div class="calc-td">{{'home.monthly' | translate}}: {{package.returns.monthly}}</div>
+                                </div>
+                                <br>
+                                <i class="fas fa-chevron-down pointer" *ngIf="!package.showHelpInfo" (click)="package.showHelpInfo = true"></i>
+                                
+                                <small style="padding: 6px; display: block;" *ngIf="package.showHelpInfo">{{'home.help_info' | translate}}</small>
+                                <i class="fas fa-chevron-up pointer" *ngIf="package.showHelpInfo" (click)="package.showHelpInfo = false"></i>
+                            </div>
+                            <div class="calc-row">
+                                <div class="calc-td calc-td_hide">{{'home.mining_strategy' | translate}}</div>
+                                <div class="calc-td-inner">
+                                    <div class="calc-td">{{package.miningStrategy}}</div>
+                                </div>
+                            </div>
+                            <div class="calc-row">
+                                <div class="calc-td calc-td_hide">{{'home.min_hashrate' | translate}}</div>
+                                <div class="calc-td-inner">
+                                    <div class="calc-td">{{package.hashRate || "1"}} {{package.hashRateUnit}}</div>
+                                </div>
+                            </div>
+                            <div class="calc-row calc-row_modp calc-row_modlh">
+                                <div class="calc-td calc-td_hide">{{'home.maintenance_fee' | translate}}</div>
+                                <div class="calc-td-inner">
+                                    <div class="calc-td">{{package.maintenanceFee}}$ <br> {{package.hashRate || "1"}}
+                                        {{package.hashRateUnit}} / 24h</div>
+                                </div>
+                            </div>
+                            <div class="calc-row">
+                                <div class="calc-td calc-td_hide">{{'home.payouts' | translate}}</div>
+
+                                <div class="calc-td-inner">
+                                    <div class="calc-td">{{package.payoutDistribution}} in {{package.payoutCoin}}</div>
+                                </div>
+                            </div>
+                            <div id="buy-now" class="calc-row">
+                                <div class="calc-td calc-td_hide">{{'home.availability' | translate}}</div>
+
+                                <div class="calc-td-inner">
+                                    <div class="calc-td">
+                                        {{ package.availability ? 'In Stock' : 'Out Of Stock' }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="calc-row calc-row_modmh120">
+                                <div class="calc-td calc-td_hide">{{'home.contract_price' | translate}}</div>
+
+                                <div class="calc-td-inner">
+                                    <div class="calc-td calc-td_small calc-td_line">from <span
+                                            class="line-through">${{package.actualPrice}}</span>
+                                    </div>
+                                    <div class="calc-td calc-td_count">$ {{package.discountedPrice}}</div>
+                                    <div class="calc-td calc-td_small">per {{package.hashRate || "1"}}
+                                        {{package.hashRateUnit}}</div>
+                                </div>
+                            </div>
+                            <div class="calc-row calc-row_modmh">
+                                <div class="calc-td calc-td_hide">{{'home.potential_income' | translate}}
+                                </div>
+                                <div class="calc-td-inner">
+                                    <div class="calc-td">
+                                        {{package.potentialIncome}}%
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="calc-row calc-row_modmh140">
+                                <div class="calc-td-inner calc-td-inner_full">
+                                    <div class="calc-td calc-td_link"><a href="javascript:void(0)" class="auto-calclink"
+                                            tabindex="-1" (click)="scrollToCalc()">{{'home.mining_calculator' | translate}}</a></div>
+                                    <div class="calc-td">
+                                        <a href="javascript:void(0)" class="btn auto-buylink" (click)="buyNow(package)"
+                                            tabindex="-1">
+                                            {{'home.buy_now' | translate}}
+                                            
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="twoyear" role="tabpanel" aria-labelledby="twoyear-tab">
+                <div class="tab-cont hide" id="tab_2">
+                    <div class="calc-table calc-table-2">
+                        <div class="calc-column calc-column_1" style="" aria-hidden="true" tabindex="0" role="tabpanel"
+                            id="slick-slide70" aria-describedby="slick-slide-control70">
+                            <div class="calc-row calc-row_modmh70">
+                                <div class="calc-td calc-td_title"></div>
+                            </div>
+                            <div class="calc-row" style="height: 220px;">
+                                <!-- <div class="calc-td calc-td_title"></div> -->
+                            </div>
+                            <div class="calc-row">
+                                <div class="calc-td calc-td_title">{{'home.mining_strategy' | translate}}</div>
+                            </div>
+                            <div class="calc-row">
+                                <div class="calc-td calc-td_title">{{'home.min_hashrate' | translate}}</div>
+                            </div>
+                            <div class="calc-row">
+                                <div class="calc-td calc-td_title">{{'home.maintenance_fee' | translate}}</div>
+                            </div>
+                            <div class="calc-row">
+                                <div class="calc-td calc-td_title">{{'home.payouts' | translate}}</div>
+                            </div>
+                            <div class="calc-row">
+                                <div class="calc-td calc-td_title">{{'home.availability' | translate}}</div>
+                            </div>
+                            <div class="calc-row calc-row_modmh120">
+                                <div class="calc-td calc-td_title">{{'home.contract_price' | translate}}</div>
+                            </div>
+                            <div class="calc-row calc-row_modmh">
+                                <div class="calc-td calc-td_title">{{'home.potential_income' | translate}}
+                                </div>
+                            </div>
+                            <div class="calc-row calc-row_modmh140">
+                                <div class="calc-td calc-td_title"></div>
+                            </div>
+                        </div>
+                        <div *ngFor="let package of packages.twoYear; let i=index" class="calc-column" style="" aria-hidden="true"
+                            tabindex="-1" role="tabpanel" id="slick-slide61" aria-describedby="slick-slide-control61">
+                            <div class="calc-row calc-row_modmh70 border-right-left {{package.className}}" >
+                                <div class="calc-td calc-td_head">Package {{i+1}}</div>
+
+                                <div class="calc-td calc-td_head">{{package.name}}</div>
+                            </div>
+                            <div class="calc-row">
+                                
+                                <div class="calc-td calc-td_hide p-0-10" style="display: flex; margin-bottom: 10px;">
+                                    <input class="form-control text-center" [name]="package.name + i" placeholder="Enter amount" [(ngModel)]="package.investmentAmount" (ngModelChange)="showInvestmentReturns(package)" style="width: 79%; border: 1px solid #ccc;" />
+                                    
+                                        <a href="javascript:void(0)" class="btn auto-buylink" (click)="buyNow(package); navigateToHash()" style="    margin-bottom: 9px;
+                                        margin-left: 29px; margin-top: 9px; padding: 2px 14px"
+                                            tabindex="-1">GO</a>
+                                    
+                                </div>
+                                <div class="calc-td-inner">
+                                    <div class="calc-td">{{'home.daily' | translate}}: {{package.returns.daily}}</div>
+                                    <div class="calc-td">{{'home.monthly' | translate}}: {{package.returns.monthly}}</div>
+                                </div>
+                                <br>
+                                <i class="fas fa-chevron-down pointer" *ngIf="!package.showHelpInfo" (click)="package.showHelpInfo = true"></i>
+                                
+                                <small style="padding: 6px; display: block;" *ngIf="package.showHelpInfo">{{'home.help_info' | translate}}</small>
+                                <i class="fas fa-chevron-up pointer" *ngIf="package.showHelpInfo" (click)="package.showHelpInfo = false"></i>
+                            </div>
+                            <div class="calc-row">
+                                <div class="calc-td calc-td_hide">{{'home.mining_strategy' | translate}}</div>
+                                <div class="calc-td-inner">
+                                    <div class="calc-td">{{package.miningStrategy}}</div>
+                                </div>
+                            </div>
+                            <div class="calc-row">
+                                <div class="calc-td calc-td_hide">{{'home.min_hashrate' | translate}}</div>
+                                <div class="calc-td-inner">
+                                    <div class="calc-td">{{package.hashRate || "1"}} {{package.hashRateUnit}}</div>
+                                </div>
+                            </div>
+                            <div class="calc-row calc-row_modp calc-row_modlh">
+                                <div class="calc-td calc-td_hide">{{'home.maintenance_fee' | translate}}</div>
+                                <div class="calc-td-inner">
+                                    <div class="calc-td">{{package.maintenanceFee}}$ <br> {{package.hashRate || "1"}}
+                                        {{package.hashRateUnit}} / 24h</div>
+                                </div>
+                            </div>
+                            <div class="calc-row">
+                                <div class="calc-td calc-td_hide">{{'home.payouts' | translate}}</div>
+
+                                <div class="calc-td-inner">
+                                    <div class="calc-td">{{package.payoutDistribution}} in {{package.payoutCoin}}</div>
+                                </div>
+                            </div>
+                            <div class="calc-row">
+                                <div class="calc-td calc-td_hide">{{'home.availability' | translate}}</div>
+
+                                <div class="calc-td-inner">
+                                    <div class="calc-td">
+                                        {{ package.availability ? 'In Stock' : 'Out Of Stock' }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="calc-row calc-row_modmh120">
+                                <div class="calc-td calc-td_hide">{{'home.contract_price' | translate}}</div>
+
+                                <div class="calc-td-inner">
+                                    <div class="calc-td calc-td_small calc-td_line">from <span
+                                            class="line-through">${{package.actualPrice}}</span>
+                                    </div>
+                                    <div class="calc-td calc-td_count">$ {{package.discountedPrice}}</div>
+                                    <div class="calc-td calc-td_small">per {{package.hashRate || "1"}}
+                                        {{package.hashRateUnit}}</div>
+                                </div>
+                            </div>
+                            <div class="calc-row calc-row_modmh">
+                                <div class="calc-td calc-td_hide">{{'home.potential_income' | translate}}
+                                </div>
+                                <div class="calc-td-inner">
+                                    <div class="calc-td">
+                                        {{package.potentialIncome}}%
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="calc-row calc-row_modmh140">
+                                <div class="calc-td-inner calc-td-inner_full">
+                                    <div class="calc-td calc-td_link"><a href="javascript:void(0)" class="auto-calclink"
+                                            tabindex="-1"(click)="scrollToCalc()">{{'home.mining_calculator' | translate}}</a></div>
+                                    <div class="calc-td">
+                                        <a href="javascript:void(0)" class="btn auto-buylink" (click)="buyNow(package)"
+                                            tabindex="-1">{{'home.buy_now' | translate}}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="fiveyear" role="tabpanel" aria-labelledby="fiveyear-tab">
+                <div class="tab-cont hide" id="tab_3">
+                    <div class="calc-table calc-table-3">
+                        <div class="calc-column calc-column_1" style="" aria-hidden="true" tabindex="0" role="tabpanel"
+                            id="slick-slide80" aria-describedby="slick-slide-control80">
+                            <div class="calc-row calc-row_modmh70">
+                                <div class="calc-td calc-td_title"></div>
+                            </div>
+                            <div class="calc-row" style="height: 220px;">
+                                <!-- <div class="calc-td calc-td_title"></div> -->
+                            </div>
+                            <div class="calc-row">
+                                <div class="calc-td calc-td_title">{{'home.mining_strategy' | translate}}</div>
+                            </div>
+                            <div class="calc-row">
+                                <div class="calc-td calc-td_title">{{'home.min_hashrate' | translate}}</div>
+                            </div>
+                            <div class="calc-row">
+                                <div class="calc-td calc-td_title">{{'home.maintenance_fee' | translate}}</div>
+                            </div>
+                            <div class="calc-row">
+                                <div class="calc-td calc-td_title">{{'home.payouts' | translate}}</div>
+                            </div>
+                            <div class="calc-row">
+                                <div class="calc-td calc-td_title">{{'home.availability' | translate}}</div>
+                            </div>
+                            <div class="calc-row calc-row_modmh120">
+                                <div class="calc-td calc-td_title">{{'home.contract_price' | translate}}</div>
+                            </div>
+                            <div class="calc-row calc-row_modmh">
+                                <div class="calc-td calc-td_title">{{'home.potential_income' | translate}}
+                                </div>
+                            </div>
+                            <div class="calc-row calc-row_modmh140">
+                                <div class="calc-td calc-td_title"></div>
+                            </div>
+                        </div>
+                        <div *ngFor="let package of packages.fiveYear; let i=index" class="calc-column" style="" aria-hidden="true"
+                            tabindex="-1" role="tabpanel" id="slick-slide61" aria-describedby="slick-slide-control61">
+                            <div class="calc-row calc-row_modmh70 border-right-left {{package.className}}" >
+                                <div class="calc-td calc-td_head">Package {{i+1}}</div>
+                                <div class="calc-td calc-td_head">{{package.name}}</div>
+                            </div>
+                            <div class="calc-row">
+                                
+                                <div class="calc-td calc-td_hide p-0-10" style="display: flex; margin-bottom: 10px;">
+                                    <input class="form-control text-center" [name]="package.name + i" placeholder="Enter amount" [(ngModel)]="package.investmentAmount" (ngModelChange)="showInvestmentReturns(package)" style="width: 79%; border: 1px solid #ccc;" />
+                                    
+                                        <a href="javascript:void(0)" class="btn auto-buylink" (click)="buyNow(package); navigateToHash()" style="    margin-bottom: 9px;
+                                        margin-left: 29px; margin-top: 9px; padding: 2px 14px"
+                                            tabindex="-1">GO</a>
+                                    
+                                </div>
+                                <div class="calc-td-inner">
+                                    <div class="calc-td">{{'home.daily' | translate}}: {{package.returns.daily}}</div>
+                                    <div class="calc-td">{{'home.monthly' | translate}}: {{package.returns.monthly}}</div>
+                                </div>
+                                <br>
+                                <i class="fas fa-chevron-down pointer" *ngIf="!package.showHelpInfo" (click)="package.showHelpInfo = true"></i>
+                                
+                                <small style="padding: 6px; display: block;" *ngIf="package.showHelpInfo">{{'home.help_info' | translate}}</small>
+                                <i class="fas fa-chevron-up pointer" *ngIf="package.showHelpInfo" (click)="package.showHelpInfo = false"></i>
+                            </div>
+                            <div class="calc-row">
+                                <div class="calc-td calc-td_hide">{{'home.mining_strategy' | translate}}</div>
+                                <div class="calc-td-inner">
+                                    <div class="calc-td">{{package.miningStrategy}}</div>
+                                </div>
+                            </div>
+                            <div class="calc-row">
+                                <div class="calc-td calc-td_hide">{{'home.min_hashrate' | translate}}</div>
+                                <div class="calc-td-inner">
+                                    <div class="calc-td">{{package.hashRate || "1"}} {{package.hashRateUnit}}</div>
+                                </div>
+                            </div>
+                            <div class="calc-row calc-row_modp calc-row_modlh">
+                                <div class="calc-td calc-td_hide">{{'home.maintenance_fee' | translate}}</div>
+                                <div class="calc-td-inner">
+                                    <div class="calc-td">{{package.maintenanceFee}}$ <br> {{package.hashRate || "1"}}
+                                        {{package.hashRateUnit}} / 24h</div>
+                                </div>
+                            </div>
+                            <div class="calc-row">
+                                <div class="calc-td calc-td_hide">{{'home.payouts' | translate}}</div>
+
+                                <div class="calc-td-inner">
+                                    <div class="calc-td">{{package.payoutDistribution}} in {{package.payoutCoin}}</div>
+                                </div>
+                            </div>
+                            <div class="calc-row">
+                                <div class="calc-td calc-td_hide">{{'home.availability' | translate}}</div>
+
+                                <div class="calc-td-inner">
+                                    <div class="calc-td">
+                                        {{ package.availability ? 'In Stock' : 'Out Of Stock' }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="calc-row calc-row_modmh120">
+                                <div class="calc-td calc-td_hide">{{'home.contract_price' | translate}}</div>
+
+                                <div class="calc-td-inner">
+                                    <div class="calc-td calc-td_small calc-td_line">from <span
+                                            class="line-through">${{package.actualPrice}}</span>
+                                    </div>
+                                    <div class="calc-td calc-td_count">$ {{package.discountedPrice}}</div>
+                                    <div class="calc-td calc-td_small">per {{package.hashRate || "1"}}
+                                        {{package.hashRateUnit}}</div>
+                                </div>
+                            </div>
+                            <div class="calc-row calc-row_modmh">
+                                <div class="calc-td calc-td_hide">{{'home.potential_income' | translate}}
+                                </div>
+                                <div class="calc-td-inner">
+                                    <div class="calc-td">
+                                        {{package.potentialIncome}}%
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="calc-row calc-row_modmh140">
+                                <div class="calc-td-inner calc-td-inner_full">
+                                    <div class="calc-td calc-td_link"><a href="javascript:void(0)" class="auto-calclink"
+                                            tabindex="-1" (click)="scrollToCalc()">{{'home.mining_calculator' | translate}}</a></div>
+                                    <div class="calc-td">
+                                        <a href="javascript:void(0)" class="btn auto-buylink" (click)="buyNow(package)"
+                                            tabindex="-1">
+                                            {{'home.buy_now' | translate}}
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="lifetime" role="tabpanel" aria-labelledby="lifetime-tab">
+                <div class="tab-cont hide" id="tab_4">
+                    <div class="calc-table calc-table-4">
+                        <div class="calc-column calc-column_1" style="" aria-hidden="true" tabindex="0" role="tabpanel"
+                            id="slick-slide90" aria-describedby="slick-slide-control90">
+                            <div class="calc-row calc-row_modmh70">
+                                <div class="calc-td calc-td_title"></div>
+                            </div>
+                            <div class="calc-row">
+                                <div class="calc-td calc-td_title">{{'home.mining_strategy' | translate}}</div>
+                            </div>
+                            <div class="calc-row">
+                                <div class="calc-td calc-td_title">{{'home.min_hashrate' | translate}}</div>
+                            </div>
+                            <div class="calc-row">
+                                <div class="calc-td calc-td_title">{{'home.maintenance_fee' | translate}}</div>
+                            </div>
+                            <div class="calc-row">
+                                <div class="calc-td calc-td_title">{{'home.payouts' | translate}}</div>
+                            </div>
+                            <div class="calc-row">
+                                <div class="calc-td calc-td_title">{{'home.availability' | translate}}</div>
+                            </div>
+                            <div class="calc-row calc-row_modmh120">
+                                <div class="calc-td calc-td_title">{{'home.contract_price' | translate}}</div>
+                            </div>
+                            <div class="calc-row calc-row_modmh">
+                                <div class="calc-td calc-td_title">{{'home.potential_income' | translate}}
+                                </div>
+                            </div>
+                            <div class="calc-row calc-row_modmh140">
+                                <div class="calc-td calc-td_title"></div>
+                            </div>
+                        </div>
+                        <div *ngFor="let package of packages.lifetimeYear; let i=index" class="calc-column" style=""
+                            aria-hidden="true" tabindex="-1" role="tabpanel" id="slick-slide61"
+                            aria-describedby="slick-slide-control61">
+                            <div class="calc-row calc-row_modmh70 border-right-left {{package.className}}" >
+                                <div class="calc-td calc-td_head">Package {{i+1}}</div>
+
+                                <div class="calc-td calc-td_head">{{package.name}}</div>
+                            </div>
+                            <div class="calc-row">
+                                <div class="calc-td calc-td_hide">{{'home.mining_strategy' | translate}}</div>
+                                <div class="calc-td-inner">
+                                    <div class="calc-td">{{package.miningStrategy}}</div>
+                                </div>
+                            </div>
+                            <div class="calc-row">
+                                <div class="calc-td calc-td_hide">{{'home.min_hashrate' | translate}}</div>
+                                <div class="calc-td-inner">
+                                    <div class="calc-td">{{package.hashRate || "1"}} {{package.hashRateUnit}}</div>
+                                </div>
+                            </div>
+                            <div class="calc-row calc-row_modp calc-row_modlh">
+                                <div class="calc-td calc-td_hide">{{'home.maintenance_fee' | translate}}</div>
+                                <div class="calc-td-inner">
+                                    <div class="calc-td">{{package.maintenanceFee}}$ <br> {{package.hashRate || "1"}}
+                                        {{package.hashRateUnit}} / 24h</div>
+                                </div>
+                            </div>
+                            <div class="calc-row">
+                                <div class="calc-td calc-td_hide">{{'home.payouts' | translate}}</div>
+
+                                <div class="calc-td-inner">
+                                    <div class="calc-td">{{package.payoutDistribution}} in {{package.payoutCoin}}</div>
+                                </div>
+                            </div>
+                            <div class="calc-row">
+                                <div class="calc-td calc-td_hide">{{'home.availability' | translate}}</div>
+
+                                <div class="calc-td-inner">
+                                    <div class="calc-td">
+                                        {{ package.availability ? 'In Stock' : 'Out Of Stock' }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="calc-row calc-row_modmh120">
+                                <div class="calc-td calc-td_hide">{{'home.contract_price' | translate}}</div>
+
+                                <div class="calc-td-inner">
+                                    <div class="calc-td calc-td_small calc-td_line">from <span
+                                            class="line-through">${{package.actualPrice}}</span>
+                                    </div>
+                                    <div class="calc-td calc-td_count">$ {{package.discountedPrice}}</div>
+                                    <div class="calc-td calc-td_small">per {{package.hashRate || "1"}}
+                                        {{package.hashRateUnit}}</div>
+                                </div>
+                            </div>
+                            <div class="calc-row calc-row_modmh">
+                                <div class="calc-td calc-td_hide">{{'home.potential_income' | translate}}
+                                </div>
+                                <div class="calc-td-inner">
+                                    <div class="calc-td">
+                                        {{package.potentialIncome}}%
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="calc-row calc-row_modmh140">
+                                <div class="calc-td-inner calc-td-inner_full">
+                                    <div class="calc-td calc-td_link"><a href="javascript:void(0)" class="auto-calclink"
+                                            tabindex="-1" (click)="scrollToCalc()">{{'home.mining_calculator' | translate}}</a></div>
+                                    <div class="calc-td">
+                                        <a href="javascript:void(0)" class="btn auto-buylink" (click)="buyNow(package)"
+                                            tabindex="-1">
+                                            {{'home.buy_now' | translate}}
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="hashdiv" *ngIf="buyNowDiv" class="bg-white mt-3 p-10 border-radius-5">
+            <div class="row">
+                <div class="col-md-12 form-group">
+                    <label class="d-block">Enter hash rate you want to buy for this package: </label>
+                    <input aria-describedby="emailHelp" style="width: 40%" type="number" placeholder="Enter hash rate" name="unit"
+                        [(ngModel)]="buyContract.units" class="form-control border-normal mt-2 d-inline-block" />
+                        <button class="btn btn-primary pointer ml-20"  (click)="submit()">
+                            <!-- <i class="fa fa-arrow-circle-up"></i> -->
+                            Buy
+                        </button>
+                    <small *ngIf="buyContract.units" id="emailHelp" class="form-text text-muted d-block">Net Amount: {{fees()}}</small>
+                    <!-- <span>Aditional fees: (hashRate /10)  discountPrice + (hasRate /10)  fee</span> -->
+                </div>
+            </div>
+            
+    
+        </div>
+
+        <div class="coin-div row" *ngIf="transactionSuccess && network != 'test'">
+            <div style="display: inline;" class="p-10 text-center coin pointer col-md-2 col-sm-12 col-lg-2" (click)="showChild(coin)" *ngFor="let coin of coins">
+                <img src="assets/images/ltct.png" *ngIf="coin.key == 'ltct'" width="120" height="70" alt="ltct" />
+                <img src="assets/images/visa_PNG34.png" *ngIf="coin.key == 'visa'" width="120" height="70" alt="visa" />
+                <img src="assets/images/2560px-Bitcoin_logo.svg.png" class="mt-8" *ngIf="coin.key == 'bitcoin'" width="120" height="50" alt="bitcoin" />
+                <img src="assets/images/altcoin.png" class="mt-11" *ngIf="coin.key == 'altcoins'" width="120" height="50" alt="altcoin" /> 
+
+                <div class="child-coin-div pointer coin-child" [ngClass]="{'row' : windowSize <= 900}" *ngIf="coin.key == 'altcoins' && coin.show" >
+                   
+                    <div class="child-coin-img"  (click)="showChild({name: 'ethereum'})"> 
+                        <img src="assets/images/Ethereum-Logo.png" width="120" height="70" alt="visa" />
+                    </div>
+                    <div class="child-coin-img"  (click)="showChild({name: 'litecoin'})"> 
+                        <img class="mt-8" src="assets/images/6_Full_Logo_S-2.png" width="120" height="50" alt="bitcoin" />
+                    </div>
+                    <div class="child-coin-img"  (click)="showChild({name: 'dash'})">
+                        <img class="mt-8" src="assets/images/Dash_logo_2018_rgb_for_screens.png" width="120" height="50" alt="altcoin" /> 
+                    </div>
+                    <div class="child-coin-img"  (click)="showChild({name: 'zcash'})">
+                        <img class="mt-8" src="assets/images/zcash-logo-horizontal-fullcolor.png" width="120" height="50" alt="stablecoins" /> 
+                    </div>
+                </div>
+
+                <div class="mt-15">
+                    <img src="assets/images/ethereum-eth-logo.png" *ngIf="coin.key == 'stablecoins'" width="40" height="40" alt="stablecoins" /> <span *ngIf="coin.key == 'stablecoins'">
+                        {{coin.name}}
+                    </span>
+                </div>
+                <div style="display: flex; left: 62%; margin-top: 40px" class="child-coin-div pointer img-position-static" *ngIf="coin.key == 'stablecoins' && coin.show" >
+                   
+                    <div class="child-coin-img"  (click)="showChild(child)" *ngFor="let child of coin.coins"> 
+                       {{child.name}}
+                    </div>
+                    
+                </div>
+            </div>
+            <!-- <div class="arrow-down"></div> -->
+        </div>
+        <div class="bg-white mt-3 payment-div" *ngIf="showPaymentDiv && network != 'test'">
+            <div class="row">
+                <div class="payment-header">
+                    <p class="payment-p">
+                        {{'home.you_about_to_pay' | translate}} {{transactionData?.amount}} USD
+                    
+                    </p>
+                </div>
+                <div>
+                    <small>{{'home.note' | translate}}</small>
+                </div>
+                <div class="col-md-5">
+                    <qrcode *ngIf="transactionData?.address" [qrdata]="transactionData?.address" [width]="200" [errorCorrectionLevel]="'M'" [elementType]="'svg'"></qrcode>
+                    
+                    
+                </div>
+                <div class="col-md-7 mt-3">
+                    <ol>
+                        <li>
+                            {{'home.copy_your_address' | translate}}: <button  ngxClipboard (cbOnSuccess)="copied($event)" [cbContent]="transactionData?.address" class="btn copy-add pointer" ><i class="fas fa-copy"></i> {{'home.copy_address' | translate}}</button>
+                            <div class="c-green">{{transactionData?.address}} </div>
+                        </li>
+                        <li *ngIf="selectedCoin == 'visa'">
+                            <p>Open in new window: </p>
+                            <a href="https://payments.changelly.com" class="mr-5">https://payments.changelly.com</a>
+                            <button ngxClipboard [cbContent]="'https://payments.changelly.com'" class="btn btn-primary">{{'home.copy' | translate}}</button>
+                            <p>{{'home.and_enter' | translate}} {{transactionData?.amount}} USD {{'home.and_bitcoin_address_mentioned_above' | translate}}</p>
+                        </li>
+                        <li>
+                            Complete the payment by filling up the form.
+                        </li>
+                    </ol>
+                    status:   <span class="mr-5" style="color: #ff9900">waiting</span><i class="fas fa-circle-notch"> {{time}}</i>
+                    <!-- <div class="loader">l</div> -->
+                    <p class="mt-10">{{'home.after_payment_confirmation' | translate}}.</p>
+                    <button class="btn btn-primary" (click)="approve()">Continue</button>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+

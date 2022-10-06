@@ -1,0 +1,56 @@
+<section class="sections py-md-5 py-3 contactbg">
+  <div class="container pt-5">
+      <div class="row">
+          <div class="col-md-12 mb-5 text-center">
+              <h1 class="fw-bolder text-white ">{{'header.contact' | translate}}</h1>
+              <p class="text-white">{{'contact.get_in_touch' | translate}}</p>
+          </div>
+      </div>
+      <form class="">
+        <div class=" row content-center">
+          <div class="col-md-12" style="width: 53%">
+              <div class="form-group iconinput">
+                  <img src="assets/images/user.svg">
+                  <input class="roundinput" type="text" name="name" [(ngModel)]="contact.name" required placeholder="Name*" />
+              </div>
+          </div>
+          <div class="col-md-12" style="width: 53%">
+              <div class="form-group iconinput">
+                  <img src="assets/images/email.svg">
+                  <input class="roundinput" type="email" name="email" [(ngModel)]="contact.email" required placeholder="Email*" />
+              </div>
+          </div>
+          <!-- <div class="col-md-4">
+              <div class="form-group iconinput">
+                  <img src="assets/images/world.svg">
+                  <input class="roundinput" type="text" required placeholder="Website*" />
+              </div>
+          </div> -->
+          <div class="col-md-12" style="width: 53%">
+              <div class="form-group iconinput">
+                  <textarea class="roundinput" type="text" name="concern" [(ngModel)]="contact.concern" required placeholder="{{'contact.write_your_concern' | translate }}" rows="6"></textarea>
+              </div>
+          </div>
+          <div class="col-12 text-center">
+              <div class="btn btn-yellow w-auto" (click)="submit()">
+                  {{'contact.submit_message' | translate}}
+              </div>
+          </div>
+         
+        </div>
+      </form>
+
+      <div class="col-12 text-center social_btns mt-5">
+          <a href="#"><img src="assets/images/icon1.png" height="51"></a> &nbsp;&nbsp;
+          <a href="#"><img src="assets/images/icon2.png" height="51"></a> &nbsp;&nbsp;
+          <a href="#"><img src="assets/images/icon3.png" height="51"></a> &nbsp;&nbsp;
+          <a href="#"><img src="assets/images/icon4.png" height="51"></a> &nbsp;&nbsp;
+          <a href="#"><img src="assets/images/icon5.png" height="51"></a> &nbsp;&nbsp;
+          <a href="#"><img src="assets/images/icon6.png" height="51"></a> &nbsp;&nbsp;
+          <a href="#"><img src="assets/images/icon7.png" height="51"></a> &nbsp;&nbsp;
+          <a href="#"><img src="assets/images/icon8.png" height="51"></a>&nbsp;&nbsp;
+          <a href="#"><img src="assets/images/icon9.png" height="51"></a>
+
+      </div>
+  </div>
+</section>

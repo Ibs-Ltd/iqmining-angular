@@ -1,0 +1,125 @@
+<div class="topheader ">
+    <div class="container">
+        <div class="row">
+            <div class="col-8">
+                <!-- <label class="mb-0 py-md-2 py-1 text-white">
+                    <i class="fas fa-map-marker-alt"></i> Lorem ipsume {{'header.is' | translate}} {{'header.simply' | translate}}
+                </label>&nbsp;&nbsp;&nbsp;
+                <label class="mb-0 py-md-2 py-1 text-white">
+                    <i class="fas fa-phone-alt"></i> +919565968985
+                </label> -->
+            </div>
+            <div class="col d-flex">
+                <div class="lang dropdown ms-auto py-1">
+                    <a class="nav-link nav-btn-fill dropdown-toggle text-white py-1 px-3" href="#" id="navbarDropdown"
+                        role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {{language}}
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" (click)="useLanguage('en', 'Eng')" href="javascript:void(0)">English</a></li>
+                        <li><a class="dropdown-item" (click)="useLanguage('de', 'Ger')" href="javascript:void(0)">German</a></li>
+                    </ul>
+                </div>
+                <div class="lang dropdown ms-auto py-1" style="margin-left: 20px !important" *ngIf="!isAdmin">
+                    <a class="nav-link nav-btn-fill dropdown-toggle text-white py-1 px-3" href="#" id="navbarDropdown"
+                        role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {{network}}
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" (click)="useNetwork('main')" href="javascript:void(0)">main</a></li>
+                        <li><a class="dropdown-item" (click)="useNetwork('test')" href="javascript:void(0)">test</a></li>
+                    </ul>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+</div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light py-3">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <img src="assets/images/logo.png" height="50">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0" *ngIf="!isAdmin; else admin">
+                <li class="nav-item">
+                    <a class="nav-link active text-white px-md-3 px-0" aria-current="page" routerLink="/home">{{ 'header.home' | translate }}</a>
+                </li>
+                <li class="nav-item" *ngIf="token">
+                    <a class="nav-link active text-white px-md-3 px-0" aria-current="page"
+                        routerLink="/dashboard">{{ 'header.dashboard' | translate }}</a>
+                </li>
+                <li class="nav-item" *ngIf="token">
+                    <a class="nav-link active text-white px-md-3 px-0" aria-current="page"
+                        routerLink="/dashboard/withdraw"[translate]="'header.withdraw'"></a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/dashboard/referral" routerLinkActive="active"
+                        class="nav-link text-white px-md-3 px-0" [translate]="'header.referral'"></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white px-md-3 px-0" routerLink="/home/about" [translate]="'header.about_us'"></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white px-md-3 px-0" routerLink="/home/contact" [translate]="'header.contact'"></a>
+                </li>
+                <!-- <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-white px-md-3 px-0" href="#" id="navbarDropdown"
+                        role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        SPECIALS
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Giveaway</a></li>
+                        <li><a class="dropdown-item" href="#">Dimond Club</a></li>
+                    </ul>
+                </li> -->
+                <li class="nav-item">
+                    <a class="nav-link text-white px-md-3 px-0" routerLink="/profile/account" [translate]="'header.account'"></a>
+                </li>
+                <li class="nav-item"  *ngIf="!token">
+                    <a class="nav-link" routerLink="/auth/register"><span class="nav-btn-outline" [translate]="'header.sign_up'"></span></a>
+                </li>
+                <li class="nav-item"  *ngIf="token">
+                    <a class="nav-link" href="javascript:void(0)" (click)="logout()"><span class="nav-btn-outline" [translate]="'header.logout'"></span></a>
+                </li>
+                <li class="nav-item"  *ngIf="!token">
+                    <a class="nav-link " routerLink="/auth/login"><span class="nav-btn-fill" [translate]="'header.sign_in'"></span></a>
+                </li>
+            </ul>
+
+            <ng-template #admin>
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item" *ngIf="token">
+                        <a class="nav-link active text-white px-md-3 px-0" aria-current="page" routerLink="/admin/users">{{ 'header.users' | translate }}</a>
+                    </li>
+                    <li class="nav-item" *ngIf="token">
+                        <a class="nav-link active text-white px-md-3 px-0" aria-current="page"
+                            routerLink="/admin/withdraw">{{ 'header.withdraw' | translate }}</a>
+                    </li>
+                    <li class="nav-item" *ngIf="token">
+                        <a class="nav-link active text-white px-md-3 px-0" aria-current="page"
+                            routerLink="/admin/purchase"[translate]="'header.purchase'"></a>
+                    </li>
+                    <li class="nav-item" *ngIf="token">
+                        <a class="nav-link active text-white px-md-3 px-0" aria-current="page"
+                            routerLink="/admin/contact"[translate]="'header.contact'"></a>
+                    </li>
+                    <li class="nav-item"  *ngIf="!token">
+                        <a class="nav-link" routerLink="/auth/register"><span class="nav-btn-outline" [translate]="'header.sign_up'"></span></a>
+                    </li>
+                    <li class="nav-item"  *ngIf="token">
+                        <a class="nav-link" href="javascript:void(0)" (click)="logout()"><span class="nav-btn-outline" [translate]="'header.logout'"></span></a>
+                    </li>
+                    <li class="nav-item"  *ngIf="!token">
+                        <a class="nav-link " routerLink="/auth/login"><span class="nav-btn-fill" [translate]="'header.sign_in'"></span></a>
+                    </li>
+                </ul>
+            </ng-template>
+
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,86 @@
+<!-- Form-->
+<div class="col-12 px-3">
+	<div class="form  mb-5">
+		<div class="form-panel one ">
+			<div class="form-header">
+				<h1>{{'register.Create' | translate}} {{'login.Account' | translate}}</h1>
+			</div>
+			<div class="form-content">
+				<form>
+					<div class="row mb-4">
+						<div class="col-md-6">
+							<div class="form-group mb-3">
+								<label for="username">{{'register.name' | translate}}</label>
+								<input type="text" id="name" name="name" [(ngModel)]="register.firstName" required="required" />
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group mb-3">
+								<label for="username">{{'register.surname' | translate}}</label>
+								<input type="text" id="surname" name="surname" [(ngModel)]="register.lastName" required="required" />
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="form-group mb-3">
+								<label for="username">{{'register.email' | translate}}</label>
+								<input type="email" id="email" name="email" [(ngModel)]="register.email" required="required" />
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="form-group mb-3">
+								<label for="username">{{'register.phone' | translate}}</label>
+								<input type="text" id="phone" name="phone" [(ngModel)]="register.phone" required="required" />
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="form-group mb-3">
+								<label for="password">{{'login.Password' | translate}}</label>
+								<input type="password" id="password" name="password" [(ngModel)]="register.password" required="required" />
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="form-group mb-3">
+								<label for="password">{{'register.confirm' | translate}} {{'login.Password' | translate}}</label>
+								<input type="password" id="confirm_password" name="confirm_password" [(ngModel)]="register.confirmPassword" required="required" />
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="form-group mb-3">
+								<label for="referral">{{'header.referral' | translate}}</label>
+								<input type="text" id="referral" name="referral" [(ngModel)]="register.referralCode" required="required" />
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="form-group mb-1">
+								<label class="form-remember">
+									<input type="checkbox" name="terms" [(ngModel)]="terms" />{{'register.I_have_read_and_agree_to_the' | translate}} <a
+										routerLink="/home/terms-and-conditions">{{'register.Terms_and_conditions' | translate}}</a>
+								</label>
+							</div>
+							<div class="form-group mb-1">
+								<label class="form-remember">
+									<input type="checkbox" name="confirmpolicy" [(ngModel)]="confirmpolicy" />{{'register.I_confirm_this_service_is_provided_to_me_outside_US_territory' |
+									translate}}
+								</label>
+							</div>
+							<div class="form-group mb-1">
+								<label class="form-remember">
+									<input type="checkbox" name="risk" [(ngModel)]="risk" />{{'register.I_have_read_and_agree_with' | translate}} <a
+										routerLink="/home/privacy">{{'register.risk_policy' | translate}}</a>
+								</label>
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="form-group">
+								<button (click)="registerForm()">{{'login.Register' | translate}}</button>
+							</div>
+						</div>
+						<p class="text-center mt-4">{{'register.Already_have_an_account' | translate}}? <a
+								routerLink="/auth/login">{{'login.Login' | translate}}</a></p>
+
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

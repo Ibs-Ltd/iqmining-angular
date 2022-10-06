@@ -1,0 +1,61 @@
+/*320px — 480px: Mobile devices 481px — 768px: iPads,
+Tablets 769px — 1024px: Small screens,
+laptops 1025px — 1200px: Desktops,
+large screens 1201px and more — Extra large screens,
+TV
+*/
+
+$iphone5: 360px;
+$tablets: 767px;
+$ipadLandscap: 768px;
+$averagesize: 993px;
+$ipadPortrait: 1024px;
+$desktop: 1200px;
+
+@media (max-width: $desktop) {
+  .min-h-435 {
+    height: auto !important;
+  }
+}
+@media (max-width: $averagesize) {
+  .aboutbg {
+    padding-bottom: 30px !important;
+  }
+  .form {
+    width: 100% !important;
+  }
+
+  .form-panel.one {
+    padding: 15px !important;
+    width: 100% !important;
+  }
+
+  .calc-table {
+    // overflow: auto;
+    min-width: 767px;
+
+    font-size: 0.8rem;
+  }
+
+  .tab-content {
+    overflow: auto;
+  }
+}
+
+@media (max-width: $tablets) {
+  .fancypres {
+    padding-left: 0px !important;
+    span.count {
+      position: static !important;
+      font-size: 50px !important;
+    }
+  }
+  .main-wrapper ul.nav.nav-tabs button {
+    padding: 8px !important;
+  }
+
+  .calc-td .btn {
+    font-size: 13px !important;
+    padding: 5px 10px !important;
+  }
+}

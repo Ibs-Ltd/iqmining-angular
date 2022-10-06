@@ -1,0 +1,392 @@
+<section class="sections">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <h1 class="fw-bold text-white ">{{'home.mine_trade' |  translate}}<br />{{'home.double_up' | translate}}</h1>
+                <P class="text-white mt-4">{{'home.liquid_mining_desc' | translate}}</P>
+            </div>
+            <div class="col-md-6">
+                <img src="assets/images/mine_trade_img.png" class="mw-100">
+            </div>
+        </div>
+    </div>
+</section>
+<section class="sections">
+    <div class="container">
+        <div class="row ">
+            <div class="col-md-6">
+                <img src="assets/images/img_1.png" class="mw-100 ">
+            </div>
+            <div class="col-md-6 text-end">
+                <h1 class="fw-bold text-yellow ">{{ 'header.about_us' | translate }}</h1>
+                <!-- <p class="smheading  mb-4">{{ 'header.about_us' | translate }}</p> -->
+                
+                <p class="text-white mt-4">{{ 'home.aboutUs' | translate }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="cloud_mining sections">
+    <div class="container">
+        <div class="section_heading text-center">
+            <h1>CLOUD MINING</h1>
+            <p class="text-white">{{ 'home.cloudMining' | translate }}</p>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-6">
+                <img src="assets/images/cloud_mining.png" class="mw-100 ">
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-6 text-center mb-3 ">
+                        <div class="roundedbox text-center mb-3 p-3">
+                            <img class="mt-3" src="assets/images/daily_payout.png">
+                            <p class="text-yellow mb-0 mt-3">{{ 'home.daily_payout' | translate }}</p>
+                            <p class="text-white mb-0">in BTC, ETH</p>
+                        </div>
+                    </div>
+                    <div class="col-6 text-center mb-3">
+                        <div class="roundedbox text-center mb-3 p-3">
+                            <img class="mt-3" src="assets/images/pro_contracts.png">
+                            <p class="text-yellow mb-0 mt-3">“Pro” {{ 'home.contract' | translate }}</p>
+                            <p class="text-white mb-0">{{ 'home.with_extra' | translate }}</p>
+                        </div>
+                    </div>
+                    <div class="col-6 text-center mb-3">
+                        <div class="roundedbox text-center mb-3 p-3">
+                            <img class="mt-3" src="assets/images/income_booster.png">
+                            <p class="text-yellow mb-0 mt-3">{{ 'home.income_booster' | translate }}</p>
+                            <p class="text-white mb-0">{{ 'home.auto_reinvest' | translate }}</p>
+                        </div>
+                    </div>
+                    <div class="col-6 text-center mb-3">
+                        <div class="roundedbox text-center mb-3 p-3">
+                            <img class="mt-3" src="assets/images/live_support.png">
+                            <p class="text-yellow mb-0 mt-3">24/7 live Support</p>
+                            <p class="text-white mb-0">{{ 'home.with_response' | translate }}</p>
+                        </div>
+                    </div>
+                    <div class="col-12 text-center mt-3">
+                        <button class="btn btn-yellow" (click)="navigateToId()">{{ 'home.start_mining' | translate }}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+<section class="contracts sections main-wrapper">
+    <div class="container">
+        <div class="section_heading text-center">
+            <h1>{{'home.our_mining_contract' | translate}}</h1>
+            <p class="text-white">{{'home.we_offer' | translate}}<br />
+                {{'home.start_crypto' | translate}}</p>
+        </div>
+        <app-mining-contract-table (miningCalculatorEmitter)="scrollToCalc($event)"></app-mining-contract-table>
+    </div>
+</section>
+<section class=" sections" id="mining-calculator">
+    <div class="container">
+        <div class="section_heading text-center">
+            <h1>{{'home.mining_calc' | translate}}</h1>
+        </div>
+        <div class="row mt-5" (click)="calculatorTouched = true">
+            <div class="col-md-6">
+                <div class="calculator">
+                    <!-- <form> -->
+                    <div class="row ">
+                            <div class="col">
+                                <select (keydown.enter)="$event.preventDefault()" class="form-control" name="contract" [(ngModel)]="contract" (ngModelChange)="selectChanged($event)">
+                                    <option *ngFor="let contract of contracts" [ngValue]="contract">{{contract}}</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <select (keydown.enter)="$event.preventDefault()" class="form-control" name="validity" [(ngModel)]="validity" (ngModelChange)="selectChanged($event)">
+                                    <option *ngFor="let validity of validities" [ngValue]="validity.year">{{validity.name}}</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <!-- <input class="form-control text-center bg-yellow pointer" (click)="calculate()" value="=" readonly> -->
+                                <button style="width: 90%;" class="btn btn-warning text-center bg-yellow pointer" type='submit' (click)="calculate()">=</button>
+                            </div>
+                            <div class="col">
+                                <span>{{'home.power' | translate}}</span>
+                                <p><strong>{{miningCalculator.power}}</strong></p>
+                            </div>
+                            <div class="col-8 text-center mt-3" style="display: flex;">
+                                <!-- <h5 class="fw-bold ">$5000</h5> -->
+                                <input class="form-control fw-bold text-right" type="text" [(ngModel)]="amount" name="amt" /> 
+                                <span class="fw-bold" style="margin-top: 14px;">$</span>
+                            </div>
+                        </div>
+                        <!-- </form> -->
+                </div>
+                <div class="row">
+                    <div class="col text-center mt-3 ">
+                        <div class="roundedbox bg-blue text-center  h-auto mb-3 p-3">
+                            <p class="text-white mb-1" style="text-transform: uppercase;">{{'home.daily' | translate}} {{'home.income' | translate}}</p>
+                            <h5 class="text-yellow mb-0 fw-bold">{{miningCalculator.daily
+                                }}</h5>
+                        </div>
+                    </div>
+                    <div class="col text-center mt-3 ">
+                        <div class="roundedbox bg-blue text-center h-auto mb-3 p-3">
+                            <p class="text-white mb-1" style="text-transform: uppercase;">{{'home.monthly' | translate}} {{'home.income' | translate}}</p>
+                            <h5 class="text-yellow mb-0  fw-bold">{{miningCalculator.monthly}}</h5>
+                        </div>
+                    </div>
+                    <div class="col text-center mt-3 ">
+                        <div class="roundedbox bg-blue text-center h-auto mb-3 p-3">
+                            <p class="text-white mb-1" style="text-transform: uppercase;">{{'home.annual' | translate}} {{'home.income' | translate}}</p>
+                            <h5 class="text-yellow mb-0 fw-bold">{{miningCalculator.yearly}}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <img src="assets/images/mining_calculator.png" class="mw-100">
+            </div>
+        </div>
+    </div>
+</section>
+<section class="worldmap sections">
+    <div class="container mb-5">
+
+        <div class="row mt-5">
+            <div class="col-md-12">
+                <img src="assets/images/home.jpg" style="width: 100%;" />
+            </div>
+            <!-- <div class="col-md-7 text-center">
+                <h1 class="fw-bold text-aqua-green income-count">1,040,223+</h1>
+                <h5 class="fw-bold text-white">People From All Around The World Have Been<br />Transaction on
+                    CryptoKit
+                </h5>
+
+                <div class="videosec">
+                    <div class="palybtn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                            class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+                            <path
+                                d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z" />
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col text-center">
+                        <h2 class="text-aqua-green">1,040K</h2>
+                        <p class="text-white">Client</p>
+                    </div>
+                    <div class="col text-center">
+                        <h2 class="text-aqua-green">121+</h2>
+                        <p class="text-white">Advisory</p>
+                    </div>
+                    <div class="col text-center">
+                        <h2 class="text-aqua-green">12M+</h2>
+                        <p class="text-white">Value Transaction</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                <p class="smheading text-aqua-green mb-4">ABOUT US</p>
+                <h1 class="fw-bold text-white">What They Say</h1>
+                <p class="text-white mt-4">Lorem Ipsum is simply dummy text of the printing and typesetting
+                    industry. Lorem Ipsum has been the industry's standard dummy
+                    text ever since the n unknown pri</p>
+
+                <div class="review_sec mb-5">
+                    <div class="rating_box mb-4">
+                        <span class="star_rate"><img src="assets/images/star-fill.svg"></span>
+                        <span class="star_rate"><img src="assets/images/star-fill.svg"></span>
+                        <span class="star_rate"><img src="assets/images/star-fill.svg"></span>
+                        <span class="star_rate"><img src="assets/images/star-fill.svg"></span>
+                        <span class="star_rate"><img src="assets/images/star-fill.svg"></span>
+                    </div>
+                    <p class="text-white">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                        the industry's standard
+                        dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it
+                        to make
+
+                    </p>
+
+                    <div class="userinfo d-flex align-items-center mt-4">
+                        <div class="profile_pic">
+                            <img src="https://shahjis.in/wp-content/uploads/2021/02/sun-spots.jpeg">
+                        </div>
+                        <div class="flex-grow-1 ps-3">
+                            <p class="text-white fw-bold mb-0">Lorem ipsum</p>
+                            <small class="text-danger">Manager</small>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+</section>
+<!-- <section class=" sections">
+    <div class="container">
+        <div class="section_heading-2 text-center">
+            <h1>No Previous Experience in Trading</h1>
+            <h5 class="text-white fw-light">Just start copynig the most successful traders!
+            </h5>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-6">
+                <img src="assets/images/img_3.png" class="mw-100">
+            </div>
+            <div class="col-md-6">
+                <table class="w-100 align-top">
+                    <tr>
+                        <td></td>
+                        <td class="text-primary">
+                            <p class="mb-4">HOW TO COPY TRADES?</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="align-top"><span class="steps bg-warning">STEP 1</span></td>
+                        <td class="text-white">
+                            <h5>Choose Trader to copy trades</h5>
+                            <p class="fw-light small mt-2 mb-4">Select one or several traders from out most success
+                                trader.
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="align-top"><span class="steps bg-primary">STEP 2</span></td>
+                        <td class="text-white">
+                            <h5>Monitor your earnings</h5>
+                            <p class="fw-light small mt-2 mb-4">You don't need to trade manually, just follow your
+                                balance
+                                growing!</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="align-top"><span class="steps bg-danger">STEP 3</span></td>
+                        <td class="text-white">
+                            <h5>Withdraw your profit</h5>
+                            <p class="fw-light small mt-2 mb-4">Request your withdrawal and get paid paid on your
+                                cryptocurrency wallet anytime</p>
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+            <div class="col-md-6 mx-auto mt-3">
+                <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="assets/images/img_4.png" class="h-auto w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="assets/images/img_4.png" class="h-auto w-100" alt="...">
+                        </div>
+                        <div class="carousel-item ">
+                            <img src="assets/images/img_4.png" class="h-auto w-100" alt="...">
+                        </div>
+                    </div>
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0"
+                            class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                            aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                            aria-label="Slide 3"></button>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section> -->
+<section class=" sections">
+    <div class="container">
+        <div class="section_heading">
+            <p class="smheading text-primary mb-4" style="text-transform: uppercase;">{{'home.update' | translate}}</p>
+            <h1 class="text-white">{{'home.latest_news' | translate}}</h1>
+        </div>
+        <div class="row mt-5">
+            <div class="widget-container" style="overflow-x: auto;">
+                <iframe style="    width: 140%;
+                height: 424px; overflow-x: auto" src="https://widgetscdn.cryptomood.com/sentiment-news?size=large&direction=row"></iframe>
+                </div>
+            <!-- <div class="col-md-4">
+                <div class="blogHolder">
+                    <img src="https://economictimes.indiatimes.com/thumb/height-450,width-600,imgsize-552110,msid-83626351/cryptocurrency.jpg"
+                        class="w-100">
+
+                    <h5 class="text-white fw-bold mt-4">5 Financial Problems Fintech Can Solve</h5>
+                    <p class="text-white mt-4">Lorem Ipsum is simply dummy text of the printing and typesetting
+                        industry.
+                        Lorem Ipsum has been
+                        the industry's standard
+                        dummy text ever since the n unknown pri
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="blogHolder">
+                    <img src="https://www.bankrate.com/2020/08/19164919/What-is-cryptocurrency.jpeg" class="w-100">
+
+                    <h5 class="text-white fw-bold mt-4">5 Financial Problems Fintech Can Solve</h5>
+                    <p class="text-white mt-4">Lorem Ipsum is simply dummy text of the printing and typesetting
+                        industry.
+                        Lorem Ipsum has been
+                        the industry's standard
+                        dummy text ever since the n unknown pri
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="blogHolder">
+                    <img src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202105/Screenshot_2021-05-19_at_9.46._1200x768.png"
+                        class="w-100">
+
+                    <h5 class="text-white fw-bold mt-4">5 Financial Problems Fintech Can Solve</h5>
+                    <p class="text-white mt-4">Lorem Ipsum is simply dummy text of the printing and typesetting
+                        industry.
+                        Lorem Ipsum has been
+                        the industry's standard
+                        dummy text ever since the n unknown pri
+                    </p>
+                </div>
+            </div> -->
+        </div>
+    </div>
+</section>
+<!-- <section class="getstart sections">
+    <div class="container">
+
+        <div class="row my-5">
+            <div class="col-md-7">
+                <div class="section_heading">
+                    <p class="smheading text-primary mb-4">GET STARTED</p>
+                    <h1 class="text-white">Easy way to start with cryptokit</h1>
+                </div>
+                <p class="text-white mt-4">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                    Lorem
+                    Ipsum has been the
+                    industry's standard
+                    dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to
+                    make</p>
+
+
+                <button class="btn btn-yellow my-5">JOIN US</button>
+
+            </div>
+            <div class="col-md-5">
+                <div class="videosec">
+                    <div class="palybtn_">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                            class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+                            <path
+                                d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> -->

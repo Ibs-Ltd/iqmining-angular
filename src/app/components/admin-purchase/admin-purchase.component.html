@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card mt-5">
+        <div class="header-card p-md-4 p-3">
+          <h4 class="text-yellow mb-0 text-center">{{ 'purchase.purchase_history' | translate }}</h4>
+        </div>
+        <div class="p-3 bg-white">
+          <div *ngIf="packages?.length">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Status</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">Contract Year</th>
+                  <th scope="col">Mining Strategy</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let package of packages | paginate: { itemsPerPage: 10, currentPage: page }">
+                  <th scope="row">{{package.status}}</th>
+                  <td>{{package?.package?.name}}</td>
+                  <td>{{package?.package?.discountedPrice}}</td>
+                  <td>{{package?.package?.contractYear}}</td>
+                  <td>{{package?.package?.miningStrategy}}</td>
+                  
+                </tr>
+
+              </tbody>
+            </table>
+            <pagination-controls (pageChange)="getPurchaseList($event)"></pagination-controls>
+
+          </div>
+          <h4 class="text-muted text-center py-5" *ngIf="!packages?.length">{{ 'account.no_purchase_his' | translate }}</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

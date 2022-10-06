@@ -1,0 +1,395 @@
+@import "https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@200;300;400;500;600;700;900&display=swap",
+  "./responsive.scss";
+// @import "~bootstrap/scss/bootstrap";
+$bg-color: #111930;
+$second-color: #dbef42;
+$third-color: #223363;
+$aqua-green: #5ef7e5;
+
+body {
+  font-family: "Libre Franklin", sans-serif;
+  background: $bg-color;
+  // font-size: 0.9rem;
+  line-height: 1.5rem;
+}
+.nav-link {
+  font-size: 0.9rem;
+}
+input,
+textarea {
+  outline: none !important;
+}
+.curosr-pointer {
+  cursor: pointer;
+}
+.pt-50 {
+  padding-top: 50px;
+}
+
+.fw-bold {
+  font-weight: 600 !important;
+}
+
+.smheading {
+  color: $second-color;
+}
+.text-light-blue {
+  color: #979fb6;
+}
+.bg-blue {
+  background: $third-color !important;
+}
+
+.text-yellow {
+  color: $second-color;
+}
+
+.cloud_mining {
+  background: $third-color;
+}
+
+.text-aqua-green {
+  color: $aqua-green;
+}
+
+.section_heading {
+  h1 {
+    color: $second-color;
+    font-weight: bold;
+  }
+}
+
+.roundedbox {
+  background: #111930;
+  border-radius: 15px;
+  height: 100%;
+}
+
+.btn-yellow {
+  background: $second-color;
+  border: 0px solid;
+  color: #000;
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-weight: 600;
+}
+.btn-round {
+  border: 0px solid;
+
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-weight: 600;
+}
+.bg-yellow {
+  background: $second-color !important;
+}
+
+.calculator {
+  padding: 15px;
+  background: #fff;
+  border-radius: 10px;
+}
+
+.calculator select.form-control {
+  border: 2px solid;
+  background-image: url(assets/images/caret.png);
+  background-size: 13px;
+  background-repeat: no-repeat;
+  background-position: calc(100% - 10px) center;
+}
+
+.calculator .form-control {
+  height: 50px;
+}
+
+.income-count {
+  font-size: 3rem !important;
+}
+
+.palybtn {
+  background: #fff;
+  height: 65px;
+  width: 65px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+  position: relative;
+  border-color: #111930 #111930 #5ef7e5 #111930;
+  border-style: solid;
+  border-width: 4px;
+  animation: mymove 2s infinite;
+}
+
+.palybtn_ {
+  background: #fff;
+  height: 65px;
+  width: 65px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+  position: relative;
+  box-shadow: 0px 0px 0px 15px rgb(255 255 255 / 20%);
+  animation: mymove 2s infinite;
+}
+
+// @keyframes mymove {
+//     from {
+//         transform: rotate(0deg);
+//     }
+//     to {
+//         transform: rotate(360deg);
+//     }
+// }
+// .palybtn svg {
+//     animation: mymove-r 2s infinite;
+// }
+// @keyframes mymove_r {
+//     from {
+//         transform: rotate(0deg);
+//     }
+//     to {
+//         transform: rotate(360deg);
+//     }
+// }
+.videosec {
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reviewbox {
+  background: $bg-color;
+}
+
+.review_sec {
+  padding: 25px;
+  background-image: url("assets/images/quote_icon.png");
+  background-position: calc(100% - 20px) calc(100% - 20px);
+  background-size: 70px;
+  background-repeat: no-repeat;
+  background-color: #111930;
+}
+
+.star_rate {
+  display: inline-block;
+  margin-right: 7px;
+}
+
+.profile_pic {
+  height: 80px;
+  width: 80px;
+  overflow: hidden;
+  border-radius: 100%;
+}
+
+.profile_pic > img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.worldmap {
+  background: url("assets/images/world_map.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.section_heading-2 h1 {
+  font-weight: 200;
+  font-size: 2.5rem;
+  color: #fff;
+}
+
+span.steps {
+  font-size: 0.8rem;
+  color: #fff;
+  font-weight: 600;
+  padding: 4px 0px 4px 6px;
+  display: inline-block;
+  width: 58px;
+  text-align: center;
+  border-radius: 4px;
+  position: relative;
+  margin-right: 20px;
+}
+
+span.steps:after {
+  content: "";
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  transform: rotate(45deg);
+  border-radius: 4px;
+  right: -8px;
+  z-index: -1;
+}
+
+span.steps.bg-warning:after {
+  background: #ffc107 !important;
+}
+
+span.steps.bg-primary:after {
+  background: #0d6efd !important;
+}
+
+span.steps.bg-danger:after {
+  background: #dc3545 !important;
+}
+
+.carousel-indicators {
+  position: relative;
+}
+
+.carousel-indicators button {
+  width: 10px !important;
+  border-radius: 100%;
+  height: 10px !important;
+}
+
+.blogHolder {
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.blogHolder > img {
+  height: 250px;
+  object-fit: cover;
+}
+
+.getstart {
+  background: url("assets/images/bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.social_sec > a {
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+  border: 1px solid #8e919c;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8e919c;
+  text-decoration: none;
+  font-size: 25px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+.social_sec {
+  display: flex;
+}
+
+footer h5 {
+  color: #fff;
+  margin-bottom: 18px;
+  font-weight: 300;
+}
+
+.footer-link {
+  color: #8f929d;
+  text-decoration: none;
+}
+
+footer {
+  padding-top: 30px;
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#111930+0,22283f+100 */
+  background: #111930;
+  /* Old browsers */
+  background: -moz-linear-gradient(left, #111930 0%, #22283f 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, #111930 0%, #22283f 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, #111930 0%, #22283f 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#111930', endColorstr='#22283f', GradientType=1);
+  /* IE6-9 */
+}
+
+ul.footerlist {
+  list-style: none;
+  padding-left: 0px;
+}
+
+ul.footerlist a {
+  display: block;
+  text-decoration: none;
+  color: #8f929d;
+  padding: 5px 0px;
+}
+.navbar-light .navbar-toggler-icon {
+  filter: invert(1);
+}
+.card {
+  background: #223263;
+}
+select.form-control {
+  background: url(assets/images/yellow_triangle.png);
+  background-position: calc(100% - 10px) center;
+}
+.card-body {
+  padding: 20px;
+}
+.card-body .text-muted {
+  color: #9c9c9c !important;
+}
+.form-group {
+  margin-bottom: 1.3rem;
+}
+
+.form-control {
+  border: 2px solid #fff;
+  background: transparent;
+  min-height: 50px;
+}
+
+.btn-outline-upload {
+  position: relative;
+  color: #fff;
+  border: 1px solid #dbef42;
+  padding: 15px 16px;
+}
+
+.btn-outline-upload > input {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.cardform .form-control {
+  background: transparent;
+  color: #fff;
+}
+
+.cardform .form-control:focus {
+  background-color: transparent !important;
+}
+
+.neg-btm-40 {
+  margin-bottom: -40px;
+}
+.social_btns > a {
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
+.text-right {
+  text-align: right !important;
+}
+.pointer {
+  cursor: pointer;
+}
+.d-block {
+  display: block;
+}

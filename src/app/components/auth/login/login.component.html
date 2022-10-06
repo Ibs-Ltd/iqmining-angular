@@ -1,0 +1,44 @@
+<!-- Form-->
+<div class="col-12 px-3">
+    <div class="form  mb-5">
+        <div class="form-panel one ">
+            <div class="form-header">
+                <h1>{{'login.Account' | translate}} {{'login.Login' | translate}}</h1>
+            </div>
+            <div class="form-content">
+                <form>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group mb-3">
+                                <label for="username">{{'login.Username' | translate}}</label>
+                                <input type="text" id="username" name="username" [(ngModel)]="auth.email" required="required" />
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+
+                            <div class="form-group mb-3">
+                                <label for="password">{{'login.Password' | translate}}</label>
+                                <input type="password" id="password" name="password" [(ngModel)]="auth.password" required="required" />
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+
+                            <div class="form-group mb-3">
+                                <label class="form-remember">
+                                    <input type="checkbox" />{{'login.Remember_Me' | translate}}
+                                </label><a class="form-recovery" routerLink="/auth/forgot-password">{{'login.Forgot_Password' | translate}}?</a>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+
+                            <div class="form-group mb-3">
+                                <button (click)="login()">{{'login.Login' | translate}}</button>
+                            </div>
+                        </div>
+                        <p class="text-center mt-4">{{'login.Dont_have_an_account' | translate}}? <a routerLink="/auth/register">{{'login.Register' | translate}}</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

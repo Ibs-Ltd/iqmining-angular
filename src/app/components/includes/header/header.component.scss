@@ -1,0 +1,19 @@
+.topheader {
+    background: #484e60;
+    width: 100%;
+}
+.navbar {
+    background: #111930 !important;
+    .nav-btn-outline {
+        border: 2px solid #dbef42;
+        border-radius: 30px;
+        padding: 5px 12px;
+        color: #fff;
+    }
+}
+.nav-btn-fill {
+    background-color: #dbef42;
+    border-radius: 30px;
+    padding: 5px 12px;
+    color: #223363 !important;
+}
